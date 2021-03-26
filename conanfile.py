@@ -18,10 +18,12 @@ class H5cpp11Conan(ConanFile):
                 "gtest/1.10.0",
                 "zlib/1.2.11@conan/stable"]
 
+    exports_sources = "patch_file/cmake.patch"
+
     def source(self):
         self.run("git clone https://github.com/skulumani/fdcl-hdf5.git")
 
-        patch_path = "/home/dhsung/conan_pkg_source/conan_h5cpp11/patch_file/cmake.patch"
+        patch_path = "../export_source/patch_file/cmake.patch"
         # file_path = "fdcl-hdf5/CMakeLists.txt"
         # self.run(f"patch {file_path} -i {patch_path} -o {file_path} -f")
         tools.patch(patch_file=patch_path)
